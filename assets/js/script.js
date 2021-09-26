@@ -12,7 +12,6 @@ let currentQuestion = 0;
 let endGameFlag = false;
 let finalScore;
 
-
 let questions = [
     {
       title: "Commonly used data types DO NOT include:",
@@ -48,17 +47,12 @@ let questions = [
     }
   ];
 
-
 init()
 
 function init() {
     welcomeDisp();
-    
     localStorage.getItem("scoreList", JSON.parse(scoreList));
-
     timerCount.value = 60;
-
-
 }
 
 function welcomeDisp(){
@@ -88,18 +82,14 @@ function startTimer() {
             timerCount = timerCount - 10;
             wrongAnswerSubtractTime = false;
         }
-            
         if (timerCount <= 0) {  
           endGame();
         }
-
     }, 1000);
 }
 
 function showQuestion() {
-
     document.getElementById("questionContainer").setAttribute("class", "");
-    
     document.getElementById("cardHeading").innerText = questions[currentQuestion].title;
     document.getElementById("answerOne").innerText = questions[currentQuestion].choices[0];
     document.getElementById("answerTwo").innerText = questions[currentQuestion].choices[1];
@@ -113,13 +103,11 @@ function showQuestion() {
 
 function evalQuestion(e){
     let chosenOption = this.textContent;
-
     if(chosenOption === questions[currentQuestion].answer){
         
         document.getElementById("negFeedback").setAttribute("class", "hideNegFeedback");
         document.getElementById("posFeedback").setAttribute("class", "");
         changeQuestion();
-
     } else {
         wrongAnswerSubtractTime = true
         document.getElementById("posFeedback").setAttribute("class", "hidePosFeedback");
@@ -131,7 +119,6 @@ function evalQuestion(e){
 
 function changeQuestion() {
     currentQuestion++;
-        
     if(currentQuestion < questions.length){
         showQuestion();
         } else {
@@ -144,8 +131,6 @@ function endFeedback() {
     document.getElementById("posFeedback").setAttribute("class", "hidePosFeedback");
     document.getElementById("negFeedback").setAttribute("class", "hideNegFeedback");
 }
-
-
 
 function endGame() {
     endFeedback();
